@@ -1,8 +1,7 @@
 ﻿namespace ConsoleApp1
 {
-    public class RocketB(string model, int engineCount)
+    public class RocketB(string model, int engineCount) : Rocket(model, engineCount)
     {
-        public string Model => model;
-        public int EngineCount => engineCount;
+        public int MaxPayload {  get; set; }
     }
 }

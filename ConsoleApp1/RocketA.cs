@@ -1,30 +1,7 @@
 ﻿namespace ConsoleApp1
 {
-    public class RocketA
+    public class RocketA(string model, int engineCount) : Rocket(model, engineCount)
     {
-        private string _model;
-        private int _engineCount;
-
-        public RocketA(string model, int engineCount)
-        {
-            this._model = model;
-            this._engineCount = engineCount;
-        }
-
-        public string Model 
-        {  
-            get 
-            { 
-                return _model; 
-            } 
-        }
-
-        public int EngineCount 
-        { 
-            get 
-            { 
-                return _engineCount; 
-            } 
-        }
+        public int StageCount { get; set; }
     }
 }

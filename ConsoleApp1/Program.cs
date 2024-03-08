@@ -4,33 +4,56 @@
     {
         static void Main(string[] args)
         {
-            var monster = new RocketA("Monster", 16);
-            var mini = new RocketB("Mini", 2);
-            var dragon = new RocketA("Dragon", 12);
-            var wombat = new RocketB("Wombat", 3);
+            var monster = new RocketA("Monster", 16) { StageCount = 3 };
+            var mini = new RocketB("Mini", 2) { MaxPayload = 1000 };
+            var dragon = new RocketA("Dragon", 12) { StageCount = 2 };
+            var wombat = new RocketB("Wombat", 3) { MaxPayload = 1000 };
+            var eagle = new RocketC("Eagle", 8) { MaxCrew = 3 };
+            var dragonfly = new RocketC("Dragonfly", 12) { MaxCrew = 10 };
 
-            var rocketsA = new List<RocketA> { monster, dragon };
+            var multistage = new List<Rocket> { monster, dragon };
 
-            List<RocketA> rocketsA2 = new() { monster, dragon };
+            List<Rocket> payload = new() { mini, wombat };
 
-            List<RocketB> rocketsB = [mini, wombat];
+            List<Rocket> crew = [eagle, dragonfly];
 
+            List<Rocket> allRockets = [.. multistage, .. payload, .. crew];
 
-            foreach (RocketA rocket in rocketsA)
+            foreach (var rocket in pasteCollectionsIterate(payload, crew))
             {
-                Console.WriteLine(rocket.ToString());
+                Console.WriteLine(rocket.Model);
             }
 
-            foreach (RocketA rocket in rocketsA2)
+            foreach (var rocket in pasteCollectionsUnion(payload, crew))
             {
-                Console.WriteLine(rocket.ToString());
+                Console.WriteLine(rocket.Model);
+            }
+            foreach (var rocket in allRockets)
+            {
+                Console.WriteLine(rocket.Model);
+            }
+        }
+
+        public static List<Rocket> pasteCollectionsIterate(List<Rocket> collectionA, List<Rocket> collectionB)
+        {
+            var collection = new List<Rocket>();
+
+            foreach (var rocket in collectionA)
+            {
+                collection.Add(rocket);
             }
 
-            foreach (RocketB rocket in rocketsB)
+            foreach(var rocket in collectionB)
             {
-                Console.WriteLine(rocket.ToString());
+                collection.Add(rocket);
             }
 
+            return collection;
+        }
+
+        public static List<Rocket> pasteCollectionsUnion(List<Rocket> collectionA, List<Rocket> collectionB)
+        {
+            return collectionA.Union<Rocket>(collectionB).ToList();
         }
     }
 }

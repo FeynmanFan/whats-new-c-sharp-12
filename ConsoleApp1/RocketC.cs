@@ -1,15 +1,7 @@
 ﻿namespace ConsoleApp1
 {
-    public class RocketC
+    public class RocketC(string model, int engineCount) : Rocket(model, engineCount)
     {
-        private RocketC() { }
-
-        public static RocketC Create(string model, int engineCount)
-        {
-            return new RocketC { Model = model, EngineCount = engineCount };
-        }
-
-        public string Model { get; set; }
-        public int EngineCount { get; set; }
+        public int MaxCrew { get; set; }
     }
 }
