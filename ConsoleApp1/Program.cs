@@ -1,5 +1,9 @@
 ﻿using System.Reflection;
 
+using Multistage = ConsoleApp1.RocketA;
+using Payload = ConsoleApp1.RocketB;
+using HumanRated = ConsoleApp1.RocketC;
+
 using DockingPair = (ConsoleApp1.Rocket, ConsoleApp1.Rocket);
 
 namespace ConsoleApp1
@@ -8,12 +12,12 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var monster = new RocketA("Monster", 16) { StageCount = 3 };
-            var mini = new RocketB("Mini", 2) { MaxPayload = 1000 };
-            var dragon = new RocketA("Dragon", 12) { StageCount = 2 };
-            var wombat = new RocketB("Wombat", 3) { MaxPayload = 1000 };
-            var eagle = new RocketC("Eagle", 8) { MaxCrew = 3 };
-            var dragonfly = new RocketC("Dragonfly", 12) { MaxCrew = 10 };
+            var monster = new Multistage("Monster", 16) { StageCount = 3 };
+            var mini = new Payload("Mini", 2) { MaxPayload = 1000 };
+            var dragon = new Multistage("Dragon", 12) { StageCount = 2 };
+            var wombat = new Payload("Wombat", 3) { MaxPayload = 1000 };
+            var eagle = new HumanRated("Eagle", 8) { MaxCrew = 3 };
+            var dragonfly = new HumanRated("Dragonfly", 12) { MaxCrew = 10 };
 
             var multistage = new List<Rocket> { monster, dragon };
 
@@ -46,7 +50,8 @@ namespace ConsoleApp1
 
             Console.WriteLine(((ReadOnlySpan<int>)p).ToString());
 
-            var dockingPair = (new RocketA("Monster", 16), new RocketB("Wombat", 3));
+            var dockingPair = new DockingPair(new RocketA("Monster", 16), new RocketB("Wombat", 3));
+
         }
 
         public static string GetRocketDetails(ref readonly Rocket rocket)
