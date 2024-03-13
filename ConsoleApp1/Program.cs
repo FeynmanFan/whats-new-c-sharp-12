@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1
+﻿using System.Security.Cryptography;
+
+namespace ConsoleApp1
 {
     internal class Program
     {
@@ -32,9 +34,16 @@
             {
                 Console.WriteLine(GetRocketDetails(in rocket));
             }
+
+            var p = new GimbalPoint();
+
+            p[0] = 123;
+            p[1] = 245;
+
+            Console.WriteLine(p.ToString());
         }
 
-        public static string GetRocketDetails(in Rocket rocket)
+        public static string GetRocketDetails(ref readonly Rocket rocket)
         {
             return "Model: " + rocket.Model + "EngineCount: " + rocket.EngineCount;
         }
