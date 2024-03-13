@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System.Reflection;
+
+using DockingPair = (ConsoleApp1.Rocket, ConsoleApp1.Rocket);
 
 namespace ConsoleApp1
 {
@@ -43,6 +45,8 @@ namespace ConsoleApp1
             Console.WriteLine(p.ToString());
 
             Console.WriteLine(((ReadOnlySpan<int>)p).ToString());
+
+            var dockingPair = (new RocketA("Monster", 16), new RocketB("Wombat", 3));
         }
 
         public static string GetRocketDetails(ref readonly Rocket rocket)
