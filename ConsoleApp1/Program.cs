@@ -41,6 +41,8 @@ namespace ConsoleApp1
             p[1] = 245;
 
             Console.WriteLine(p.ToString());
+
+            Console.WriteLine(((ReadOnlySpan<int>)p).ToString());
         }
 
         public static string GetRocketDetails(ref readonly Rocket rocket)
