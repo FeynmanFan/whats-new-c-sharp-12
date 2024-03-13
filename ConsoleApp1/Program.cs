@@ -30,8 +30,13 @@
             }
             foreach (var rocket in allRockets)
             {
-                Console.WriteLine(rocket.Model);
+                Console.WriteLine(GetRocketDetails(in rocket));
             }
+        }
+
+        public static string GetRocketDetails(in Rocket rocket)
+        {
+            return "Model: " + rocket.Model + "EngineCount: " + rocket.EngineCount;
         }
 
         public static List<Rocket> pasteCollectionsIterate(List<Rocket> collectionA, List<Rocket> collectionB)
